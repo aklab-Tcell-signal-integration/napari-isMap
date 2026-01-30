@@ -99,7 +99,8 @@ You should see:
 
 ## 📦 Requirements
 
-- Python **3.10+**
+- For Windows and Linux: Python **3.10+**
+- For Mac with Apple silicon: Python **3.11**
 - Core:
   - `numpy`, `pandas`, `scikit-image`, `opencv-python`, `tifffile`
 - Deep learning:
