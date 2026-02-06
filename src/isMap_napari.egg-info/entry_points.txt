@@ -1,0 +1,2 @@
+[napari.manifest]
+isMap-napari = tcell_analysis:napari.yaml

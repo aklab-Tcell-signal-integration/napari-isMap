@@ -1,0 +1,185 @@
+Metadata-Version: 2.4
+Name: isMap-napari
+Version: 1.0
+Summary: isMap (immunological synapse map analysis program)
+Author: Anthony M.
+Author-email: manetant@gmail.com
+License: 
+        Copyright (c) 2025, Anthony M.
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        * Redistributions of source code must retain the above copyright notice, this
+          list of conditions and the following disclaimer.
+        
+        * Redistributions in binary form must reproduce the above copyright notice,
+          this list of conditions and the following disclaimer in the documentation
+          and/or other materials provided with the distribution.
+        
+        * Neither the name of copyright holder nor the names of its
+          contributors may be used to endorse or promote products derived from
+          this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Framework :: napari
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: nd2reader
+Requires-Dist: seaborn
+Requires-Dist: opencv-python
+Requires-Dist: cellpose==3.1.1.2
+Requires-Dist: tqdm
+Requires-Dist: magicgui
+Requires-Dist: qtpy
+Requires-Dist: pyqtgraph
+Requires-Dist: scikit-image==0.25.2
+Requires-Dist: scikit-learn
+Requires-Dist: tifffile
+Requires-Dist: psutil
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: bioio>=3.0.0
+Requires-Dist: bioio-nd2>=1.3.0
+Requires-Dist: napari-bioio-reader>=0.2.0
+Requires-Dist: bioio-bioformats
+Provides-Extra: gui
+Requires-Dist: napari>=0.4.19; extra == "gui"
+Requires-Dist: PyQt5; extra == "gui"
+Provides-Extra: testing
+Requires-Dist: tox; extra == "testing"
+Requires-Dist: pytest; extra == "testing"
+Requires-Dist: pytest-cov; extra == "testing"
+Requires-Dist: pytest-qt; extra == "testing"
+Requires-Dist: napari[qt]; extra == "testing"
+Dynamic: license-file
+
+# isMap (immunological synapse map analysis program)
+
+This repository provides a **isMap-Napari** plugin for analyzing T-cell activation from microscopy images.  
+It integrates **data preprocessing, segmentation, feature extraction, and interactive visualization** in a single workflow.
+
+---
+
+## ✨ Features
+
+- **Microscopy format support**
+- **Background correction** (e.g. rolling-ball, Gaussian, top-hat)
+- **T-cell segmentation** with [Cellpose](https://www.cellpose.org/) (including denoising models)
+- **Per-cell feature extraction** (intensity metrics, shape descriptors, etc.)
+- **Single-cell cropping**
+- **Interactive visualization in Napari**:
+  - Image + mask overlay  
+  - Cell labels and per-cell properties
+  - Feature-based filtering
+  - Radial profiles and condition-wise comparisons
+  - Export of results as CSV and images 
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/.../isMap-napari.git
+cd isMap-napari
+```
+
+### 2. Create and activate a virtual environment
+Conda is strongly recommended.
+```bash
+conda create -n venv-ismap -c conda-forge python=3.11
+conda activate venv-ismap
+```
+ℹ️ The plugin is tested on Python 3.11.
+
+### 3. Install the plugin
+From inside the repo:
+```bash
+pip install -e ".[gui]"
+```
+
+### 4. Validate installation
+```bash
+npe2 validate ismap-napari
+```
+You should see:
+```
+✔ Manifest for 'immunological synapse Map analysis program' valid!
+```
+
+---
+
+## 🧪 Usage in Napari
+
+1. Launch Napari:
+   ```bash
+   napari
+   ```
+2. Open the plugin:
+   **Plugins → isMap (immunological synapse Map analysis program)**
+3. In the docked widget:
+   - **Select an Input Folder containing microscopy images**
+   - **Select an Output Folder for results**
+   - **Choose segmentation parameters (model, diameter, scale)**
+   - **Run segmentation**
+   - **Run full analysis**
+4. Visualization features include:
+   - Multi-channel image layers
+   - Segmentation masks and cell outlines
+   - Cell-level labels and properties
+   - Interactive filtering by morphology and intensity
+   - Radial profiles and condition comparisons
+   - Export of filtered results to CSV
+
+---
+
+## 📦 Requirements
+
+- Python ≥ 3.10
+- Napari + Qt (via conda)
+- Cellpose + PyTorch
+- Scientific Python stack (numpy, pandas, scikit-image, etc.)
+
+All dependencies are resolved automatically when installing via conda + pip.
+
+---
+## Notes on GPU Support
+
+Cellpose uses **PyTorch**
+If a CUDA-compatible NVIDIA GPU is available, Cellpose will run on GPU automatically.
+On macOS, Cellpose typically runs on CPU.
+
+---
+
+## 📜 License
+BSD-3-Clause  
+
+
